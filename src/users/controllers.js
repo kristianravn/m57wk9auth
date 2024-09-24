@@ -1,4 +1,3 @@
-const { hashPass } = require("bcrypt");
 const User = require("./model");
 
 
@@ -23,7 +22,10 @@ const login = async (req, res) => {
         res.status(501).json({message: error.message, error:error});
     }
 }
+
+
 module.exports = {
     addUser: addUser,
     login: login,
+    
 }
