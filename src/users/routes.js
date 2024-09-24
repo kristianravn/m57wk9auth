@@ -2,7 +2,7 @@ const {Router} = require("express");
 userRouter = Router();
 
 const { addUser } = require("./controllers");
-
-userRouter.post("/users/signup", addUser);
+const {hashPass} = require("../middleware/auth");
+userRouter.post("/users/signup",hashPass, addUser);
 
 module.exports = userRouter;
