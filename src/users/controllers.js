@@ -8,7 +8,7 @@ const user = await User.create({
     email: req.body.email,
     password: req.body.password,
 });
-res.status(201).json({messsage: "success", user: user});
+res.status(201).json({messsage: "success", user: req.body.username});
 
     } catch (error){
         res.status(501).json({message: error.message, error:error});
@@ -17,7 +17,7 @@ res.status(201).json({messsage: "success", user: user});
 
 const login = async (req, res) => {
     try {
-        res.status(201).json({message: "success"});
+        res.status(201).json({message: "success", user:User});
     } catch (error) {
         res.status(501).json({message: error.message, error:error});
     }
