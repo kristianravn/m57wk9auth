@@ -41,21 +41,14 @@ const getAllUsers = async (req,res) => {
     
 };
 
-const deleteUser = async (req,res) => {
-    try {
-        const deleteUser = await User.destroy({
-            where:{user:req.params.user}
-        });
-
-        if (deleteUser) {
-            res.status (202).json({message: "success", deleteUser: deleteUser});
-        }else{
-            res.status(404).json({message:"user not found"});
-        }
-    } catch (error) {
-        res.status(500).json({message: error.message, error: error});
-    }
-};
+// const deleteUser = async (req,res) => {
+//         const deleteUser = await User.destroy({ where:{username:req.body.username} });
+//     try{
+//         res.status(200).json({message: `success, you have deleted" ${req.body.username}`, user: User});
+//     } catch(error){
+//         res.status(500).json({message: error.message, error: error});
+//     }
+// };
 
 
 module.exports = {
@@ -63,5 +56,5 @@ module.exports = {
     login: login,
     findUser: findUser,
     getAllUsers: getAllUsers,
-    deleteUser: deleteUser,
+    // deleteUser: deleteUser,
 }
