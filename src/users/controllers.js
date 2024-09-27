@@ -8,18 +8,18 @@ const user = await User.create({
     email: req.body.email,
     password: req.body.password,
 });
-res.status(201).json({messsage: "success", user: req.body.username});
+res.status(200).json({message: "success", user: user});
 
     } catch (error){
-        res.status(501).json({message: error.message, error:error});
+        res.status(500).json({message: error.message, error:error});
     }
 };
 
 const login = async (req, res) => {
     try {
-        res.status(201).json({message: "success", user:User});
+        res.status(200).json({message: "success", user:req.user});
     } catch (error) {
-        res.status(501).json({message: error.message, error:error});
+        res.status(500).json({message: error.message, error:error});
     }
 }
 const findUser = async (req,res) => {
@@ -27,7 +27,7 @@ const findUser = async (req,res) => {
     try {
         res.status(200).json({message: "success,you have found this user", finduser: user});
     } catch (error) {
-        res.status(501).json({message: error.message, error: error});
+        res.status(500).json({message: error.message, error: error});
     }
 };
 

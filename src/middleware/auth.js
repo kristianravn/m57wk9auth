@@ -37,7 +37,7 @@ const match = await bcrypt.compare(req.body.password, user.password);
         if (!match) {
             return res.status(401).json({message: "wrong password"});
 } 
- req.body.user = user;
+ req.user = user;
         next();
     } catch (error) {
         res.status(501).json({message: error.message, error: error});
