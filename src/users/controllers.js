@@ -8,13 +8,53 @@ const user = await User.create({
     email: req.body.email,
     password: req.body.password,
 });
-res.status(201).json({messsage: "success", user: user});
+res.status(200).json({message: "success", user: user});
 
     } catch (error){
-        res.status(501).json({message: error.message, error:error});
+        res.status(500).json({message: error.message, error:error});
     }
 };
 
+const login = async (req, res) => {
+    try {
+        res.status(200).json({message: "success", user:req.user});
+    } catch (error) {
+        res.status(500).json({message: error.message, error:error});
+    }
+}
+const findUser = async (req,res) => {
+    const user = await User.findOne({where:{username:req.params.name}});
+    try {
+        res.status(200).json({message: "success,you have found this user", finduser: user});
+    } catch (error) {
+        res.status(500).json({message: error.message, error: error});
+    }
+};
+
+const getAllUsers = async (req,res) => {
+    try{
+        const users = await User.findAll();
+        res.status(200).json({message: "succcess",users});
+    }catch (error) {
+        res.status(500).json({message: error.message, error: error});
+    }
+    
+};
+
+// const deleteUser = async (req,res) => {
+//         const deleteUser = await User.destroy({ where:{username:req.body.username} });
+//     try{
+//         res.status(200).json({message: `success, you have deleted" ${req.body.username}`, user: User});
+//     } catch(error){
+//         res.status(500).json({message: error.message, error: error});
+//     }
+// };
+
+
 module.exports = {
-    addUser,
+    addUser: addUser,
+    login: login,
+    findUser: findUser,
+    getAllUsers: getAllUsers,
+    // deleteUser: deleteUser,
 }
